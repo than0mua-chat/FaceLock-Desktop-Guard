@@ -1,0 +1,6 @@
+{
+  "name": "FaceLock Desktop Guard",
+  "description": "Windows desktop application featuring continuous 500ms webcam face recognition, background sentinel mode with a compact floating quick-access widget, and native Windows lock screen simulation with automatic unlock.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

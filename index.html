@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FaceLock Desktop Guard</title>
+    <meta name="description" content="Windows desktop application featuring continuous 500ms webcam face recognition, background sentinel mode with a compact floating quick-access widget, and native Windows lock screen simulation with automatic unlock." />
+    <meta property="og:title" content="FaceLock Desktop Guard" />
+    <meta property="og:description" content="Windows desktop application featuring continuous 500ms webcam face recognition, background sentinel mode with a compact floating quick-access widget, and native Windows lock screen simulation with automatic unlock." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script>
+      // Ensure window.fetch has both getter and setter on Window and Window.prototype
+      // to prevent "TypeError: Cannot set property fetch of #<Window> which has only a getter"
+      (function () {
+        try {
+          var win = typeof window !== 'undefined' ? window : (typeof globalThis !== 'undefined' ? globalThis : null);
+          if (!win) return;
+          var origFetch = win.fetch ? win.fetch.bind(win) : null;
+          var activeFetch = origFetch;
+          var desc = {
+            get: function () {
+              return activeFetch;
+            },
+            set: function (newFetch) {
+              activeFetch = newFetch;
+            },
+            configurable: true,
+            enumerable: true,
+          };
+          if (typeof Window !== 'undefined' && Window.prototype) {
+            try {
+              Object.defineProperty(Window.prototype, 'fetch', desc);
+            } catch (e) {}
+          }
+          try {
+            Object.defineProperty(win, 'fetch', desc);
+          } catch (e) {}
+        } catch (err) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
